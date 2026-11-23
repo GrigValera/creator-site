@@ -1,0 +1,24 @@
+.config { border: 1px solid #e5e0ee; background: #fff; border-radius: 24px; color: var(--ink); overflow: hidden; }
+.progress { margin: 0; padding: 20px 26px 0; display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; gap: 8px; }
+.progress li { border-bottom: 4px solid #e8e4ef; padding: 0 0 10px; font-size: .88rem; color: var(--muted); }
+.progress [aria-current] { border-color: var(--purple); color: var(--purple); font-weight: 750; }
+.panel { padding: clamp(19px, 3vw, 32px); }
+.panel h3 { font-size: clamp(1.4rem, 3vw, 2rem); line-height: 1.15; }
+.panel h3:focus { outline: none; }
+.hint { margin-top: 8px; color: var(--muted); }
+.options { margin-top: 19px; display: grid; gap: 8px; }
+.choice { display: flex; align-items: center; gap: 12px; min-height: 51px; padding: 10px 12px; background: #faf9fc; border: 1px solid #e8e4ef; border-radius: 11px; cursor: pointer; }
+.choice:has(input:checked) { border-color: var(--purple); background: #f5efff; }
+.choice input { margin: 0; width: 17px; height: 17px; flex: none; accent-color: var(--purple); }
+.choice strong { font-size: .96rem; font-weight: 650; }
+.choice small { display: block; color: var(--muted); margin-top: 2px; font-size: .83rem; }
+.tick { margin-left: auto; color: var(--purple); display: grid; }
+.actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; margin-top: 20px; }
+.next, .back { display: inline-flex; align-items: center; justify-content: center; border-radius: 9px; min-height: 45px; border: 1px solid transparent; padding: 8px 18px; text-decoration: none; font-weight: 700; }
+.next { color: white; background: var(--purple); }
+.next:disabled { background: #e8e4ef; color: #5b5468; cursor: default; }
+.back { background: white; border-color: var(--line); color: var(--ink); }
+.result { display: grid; gap: 10px; margin-top: 14px; color: var(--muted); }
+.result ul { padding-left: 21px; margin: 0; color: var(--ink); }
+.total { color: var(--purple); font-size: clamp(1.4rem, 3.6vw, 2.2rem); line-height: 1.15; font-weight: 780; }
+@media (max-width: 420px) { .progress { padding-inline: 15px; gap: 5px; } .progress li { font-size: .74rem; } }

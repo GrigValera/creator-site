@@ -1,0 +1,20 @@
+{
+  "name": "creator-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --configLoader native",
+    "build": "vite build --configLoader native && vite build --configLoader native --ssr entry-server.jsx --outDir .ssr && node prerender.mjs",
+    "preview": "vite preview --configLoader native",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
+  }
+}
