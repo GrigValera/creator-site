@@ -4,6 +4,18 @@ import styles from './App.module.css'
 
 const works = [
   {
+    id: 'smena', name: 'Смена', type: 'Сайт мастерской',
+    image: `${import.meta.env.BASE_URL}demos/smena/preview.jpg`,
+    details: 'Сайт керамической мастерской. Выбор занятия и свободного времени, подтверждение и отмена записи.',
+    preview: { url: `${import.meta.env.BASE_URL}demos/smena/`, label: 'Открыть демо' },
+  },
+  {
+    id: 'relay', name: 'Релей', type: 'Веб-приложение и интеграция',
+    image: `${import.meta.env.BASE_URL}demos/relay/preview.svg`,
+    details: 'Очередь заявок, правила маршрутизации и журнал передачи в демонстрационную CRM.',
+    preview: { url: `${import.meta.env.BASE_URL}demos/relay/`, label: 'Открыть демо' },
+  },
+  {
     id: 'gestia',
     name: 'Гестия',
     type: 'Лендинг услуг',
@@ -27,6 +39,7 @@ export function Portfolio() {
   return <section id="work" className={`${styles.bound} ${styles.section}`} aria-labelledby="work-title">
     <div className={styles.sectionHead}>
       <div><p className={styles.eyebrow}>Портфолио</p><h2 id="work-title">Примеры работ</h2></div>
+      <p>Откройте работы, чтобы посмотреть интерфейс и попробовать доступные функции.</p>
     </div>
     <div className={styles.two}>
       {works.map(item => <article className={styles.work} key={item.id}>
