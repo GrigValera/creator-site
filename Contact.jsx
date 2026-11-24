@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './App.module.css'
 
 function downloadBrief(content) {
@@ -16,6 +16,8 @@ export function Contact({ brief }) {
   const [status, setStatus] = useState({ text: '', error: false })
   const [pending, setPending] = useState(false)
   const [fieldError, setFieldError] = useState(null)
+  const sending = useRef(false)
+  const delivery = useRef(null)
 
   function getSubmission(form) {
     const data = new FormData(form)
@@ -24,7 +26,7 @@ export function Contact({ brief }) {
 
   async function send(event) {
     event.preventDefault()
-    if (pending) return
+    if (sending.current) return
     const form = event.currentTarget
     const submission = getSubmission(form)
     const invalid = submission.contact.length < 3
@@ -39,15 +41,31 @@ export function Contact({ brief }) {
       field.focus()
       return
     }
+    const fingerprint = JSON.stringify(submission)
+    if (delivery.current?.fingerprint !== fingerprint) {
+      delivery.current = { fingerprint, id: globalThis.crypto?.randomUUID?.(), receipt: undefined }
+    }
+    const attempt = delivery.current
+    if (attempt.completed) {
+      setStatus({ text: 'Эта заявка уже отправлена.', error: false })
+      return
+    }
+    sending.current = true
     setPending(true)
     setStatus({ text: 'Отправляем заявку…', error: false })
     try {
       const response = await fetch(import.meta.env.VITE_INQUIRY_ENDPOINT || '/api/inquiries', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(submission),
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...submission, deliveryId: attempt.id, deliveryReceipt: attempt.receipt }),
         signal: AbortSignal.timeout(10000),
       })
       const result = await response.json().catch(() => null)
+      if (typeof result?.deliveryReceipt === 'string' && typeof result.deliveryId === 'string') {
+        attempt.id = result.deliveryId
+        attempt.receipt = result.deliveryReceipt
+      }
       if (!response.ok || !result?.ok) throw new Error(result?.error || 'Онлайн-отправка недоступна. Скачайте бриф.')
+      attempt.completed = result.mode !== 'demo'
       setStatus({ text: result.mode === 'demo' ? 'Тестовая заявка принята. Внешняя доставка не настроена.' : 'Заявка отправлена.', error: false })
     } catch (error) {
       const message = error.name === 'TimeoutError' || error instanceof TypeError
@@ -55,6 +73,7 @@ export function Contact({ brief }) {
         : error.message
       setStatus({ text: message, error: true })
     } finally {
+      sending.current = false
       setPending(false)
     }
   }

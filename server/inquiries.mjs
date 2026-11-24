@@ -28,27 +28,38 @@ function validatedSubmission(payload) {
   return lead
 }
 
-export function createInquiryHandler({ webhook, demo = false } = {}) {
+export function createInquiryHandler({ webhook, deliver, demo = false } = {}) {
   return async function handleInquiry(req, res) {
     if (req.method !== 'POST') return response(res, 405, { error: 'Метод не поддерживается.' })
     if (!req.headers['content-type']?.toLowerCase().startsWith('application/json')) {
       return response(res, 415, { error: 'Ожидается заявка в формате JSON.' })
     }
 
-    let lead
+    let payload
     try {
-      lead = validatedSubmission(await readSubmission(req))
+      payload = await readSubmission(req)
     } catch {
       return response(res, 400, { error: 'Не удалось прочитать заявку.' })
     }
+    const lead = validatedSubmission(payload)
     if (!lead) return response(res, 400, { error: 'Проверьте контакт и описание задачи.' })
-    if (!webhook) {
+    if (!webhook && !deliver) {
       return demo
         ? response(res, 200, { ok: true, mode: 'demo' })
         : response(res, 503, { error: 'Онлайн-отправка пока недоступна. Скачайте бриф.' })
     }
 
     try {
+      if (deliver) {
+        const result = await deliver(lead, { id: payload.deliveryId, receipt: payload.deliveryReceipt })
+        if (result.delivered) return response(res, 200, { ok: true, mode: 'delivered' })
+        if (result.receipt) return response(res, 502, {
+          error: 'Почтовый сервис принял заявку. Telegram пока не подтвердил отправку. Повторите попытку.',
+          deliveryReceipt: result.receipt,
+          deliveryId: result.id,
+        })
+        return response(res, 502, { error: 'Почтовый сервис не подтвердил приём. Повторите отправку или скачайте бриф.' })
+      }
       const target = new URL(webhook)
       if (target.protocol !== 'https:') throw new Error('Expected HTTPS')
       const delivery = await fetch(target, {
