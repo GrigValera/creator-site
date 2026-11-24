@@ -1,4 +1,4 @@
-const MAX_BODY = 16_384
+const MAX_BODY = 32_768
 
 function response(res, status, body) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' })
@@ -7,12 +7,15 @@ function response(res, status, body) {
 
 async function readSubmission(req) {
   if (req.body && typeof req.body === 'object') return req.body
-  let body = ''
+  const chunks = []
+  let bytes = 0
   for await (const chunk of req) {
-    body += chunk
-    if (Buffer.byteLength(body) > MAX_BODY) return null
+    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)
+    bytes += buffer.length
+    if (bytes > MAX_BODY) return null
+    chunks.push(buffer)
   }
-  return JSON.parse(body)
+  return JSON.parse(Buffer.concat(chunks, bytes).toString('utf8'))
 }
 
 function validatedSubmission(payload) {

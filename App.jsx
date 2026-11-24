@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Configurator } from './Configurator'
 import { Contact } from './Contact'
-import { Portfolio } from './Portfolio'
-import { formatFrom, routes } from './estimate'
+import { landingExample, Portfolio } from './Portfolio'
+import { estimate, formatEstimate, formatFrom, routes } from './estimate'
 import { faq, services, solutions } from './siteContent'
 import { Icon } from './Icons'
 import mark from './mark.svg'
@@ -36,27 +36,6 @@ function Header() {
   </header>
 }
 
-function HeroVisual() {
-  return <div className={styles.heroVisual} aria-hidden="true">
-    <div className={styles.visualGrid} />
-    <div className={styles.orbit} />
-    <div className={styles.mockWindow}>
-      <div className={styles.mockTop}><i /><i /><i /><span>creator / проект</span></div>
-      <div className={styles.mockBody}>
-        <div className={styles.mockLabel}>СТРУКТУРА ПРОЕКТА</div>
-        <div className={styles.mockTitle}>Цифровая система<br />для вашего бизнеса</div>
-        <div className={styles.mockLine} />
-        <div className={styles.mockTiles}>
-          <div><Icon name="window" size={21} /><span>Сайт</span></div>
-          <div><Icon name="bag" size={21} /><span>Магазин</span></div>
-          <div><Icon name="flow" size={21} /><span>Интеграции</span></div>
-        </div>
-      </div>
-    </div>
-    <div className={styles.mockBadge}><Icon name="tick" size={17} /> Готово к настройке</div>
-  </div>
-}
-
 function Solutions({ onSelect }) {
   return <section id="solutions" className={`${styles.bound} ${styles.section}`} aria-labelledby="solutions-title">
     <div className={styles.sectionHead}>
@@ -68,10 +47,19 @@ function Solutions({ onSelect }) {
         <span className={styles.icon}><Icon name={item.icon} size={24} /></span>
         <p className={styles.cardType}>{item.type}</p>
         <h3>{item.title}</h3><p>{item.text}</p>
-        <ul className={styles.features}>{item.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-        <a href="#estimate" className={styles.price} onClick={() => onSelect('new', item.id)}>
-          {formatFrom(routes[0], item.id)}<span className={styles.sr}> — рассчитать {item.title.toLowerCase()}</span>
-        </a>
+        <ul className={styles.features} aria-label="В базовом составе">{item.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
+        {item.materials && <p><strong>Для старта.</strong> {item.materials}</p>}
+        {item.additions && <p><strong>Отдельно.</strong> {item.additions}</p>}
+        <div className={styles.cardEstimate}>
+          <p className={styles.startingPrice}>{item.id === 'landing'
+            ? formatEstimate(estimate(routes[0], item.id, []).total)
+            : formatFrom(routes[0], item.id)}</p>
+          {item.id === 'landing' && <p className={styles.estimateNote}>Предварительно, за базовый состав.</p>}
+          <a href="#estimate" className={styles.estimateLink} onClick={() => onSelect('new', item.id)}>
+            Рассчитать стоимость<span className={styles.sr}> — {item.title.toLowerCase()}</span>
+          </a>
+          {item.id === 'landing' && <a href={`#work-${landingExample.id}`} className={styles.estimateLink}>Смотреть пример лендинга</a>}
+        </div>
       </article>)}
     </div>
   </section>
@@ -94,7 +82,7 @@ function Services({ onSelect }) {
 
 export function App() {
   const [selection, setSelection] = useState({ id: 'new', sequence: 0 })
-  const [brief, setBrief] = useState('')
+  const [brief, setBrief] = useState(null)
 
   function selectProject(id, project) {
     setSelection(value => ({ id, project, sequence: value.sequence + 1 }))
@@ -106,16 +94,13 @@ export function App() {
     <main id="main" tabIndex={-1}>
       <div className={styles.heroBand}>
         <section className={`${styles.bound} ${styles.hero}`} aria-labelledby="headline">
-          <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>Веб-разработка и автоматизация</p>
-            <h1 id="headline">Сайты и веб-приложения <em>под ключ.</em></h1>
-            <p className={styles.intro}>Создаём лендинги, интернет-магазины и внутренние сервисы. Подключаем CRM, ботов, базы и системы, которыми пользуется ваш бизнес.</p>
-            <div className={styles.buttons}>
-              <a href="#estimate" className={styles.primary}>Рассчитать проект</a>
-              <a href="#work" className={styles.secondary}>Смотреть работы</a>
-            </div>
+          <h1 id="headline">Сайты и веб-приложения <em>под ключ.</em></h1>
+          <p className={styles.intro}>Запускаем лендинги для заявок, магазины для онлайн-продаж и сервисы для работы команды. Подключаем CRM, оплату и другие системы по задаче.</p>
+          <div className={styles.buttons}>
+            <a href="#estimate" className={styles.primary} onClick={() => selectProject('new', 'landing')}>Оценить лендинг</a>
+            <a href="#contact" className={styles.secondary}>Обсудить задачу</a>
           </div>
-          <HeroVisual />
+          <a href="#estimate" className={styles.heroEstimate} onClick={() => selectProject('new')}>Рассчитать другой проект</a>
         </section>
       </div>
       <Solutions onSelect={selectProject} />

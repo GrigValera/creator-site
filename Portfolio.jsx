@@ -2,28 +2,18 @@ import gestia from './gestia.svg'
 import shop from './shop.svg'
 import styles from './App.module.css'
 
+export const landingExample = {
+  id: 'gestia',
+  name: 'Гестия',
+  type: 'Лендинг услуг',
+  image: gestia,
+  details: 'Задача — помочь посетителю подобрать уборку и перейти к заявке. В демо выберите услугу: она подставится в форму. Форма готовит текст для копирования.',
+  repository: 'https://github.com/GrigValera/gestia-cleaning',
+  preview: { url: 'https://grigvalera.github.io/gestia-cleaning/', label: 'Открыть демо' },
+}
+
 const works = [
-  {
-    id: 'smena', name: 'Смена', type: 'Сайт мастерской',
-    image: `${import.meta.env.BASE_URL}demos/smena/preview.jpg`,
-    details: 'Сайт керамической мастерской. Выбор занятия и свободного времени, подтверждение и отмена записи.',
-    preview: { url: `${import.meta.env.BASE_URL}demos/smena/`, label: 'Открыть демо' },
-  },
-  {
-    id: 'relay', name: 'Релей', type: 'Веб-приложение и интеграция',
-    image: `${import.meta.env.BASE_URL}demos/relay/preview.svg`,
-    details: 'Очередь заявок, правила маршрутизации и журнал передачи в демонстрационную CRM.',
-    preview: { url: `${import.meta.env.BASE_URL}demos/relay/`, label: 'Открыть демо' },
-  },
-  {
-    id: 'gestia',
-    name: 'Гестия',
-    type: 'Лендинг услуг',
-    image: gestia,
-    details: 'Сайт клининговых услуг с выбором услуги и формой, которая готовит текст заявки в деморежиме.',
-    repository: 'https://github.com/GrigValera/gestia-cleaning',
-    preview: { url: 'https://grigvalera.github.io/gestia-cleaning/', label: 'Открыть демо' },
-  },
+  landingExample,
   {
     id: 'mymyshop',
     name: 'MyMyShop',
@@ -42,7 +32,7 @@ export function Portfolio() {
       <p>Откройте работы, чтобы посмотреть интерфейс и попробовать доступные функции.</p>
     </div>
     <div className={styles.two}>
-      {works.map(item => <article className={styles.work} key={item.id}>
+      {works.map(item => <article id={`work-${item.id}`} className={styles.work} key={item.id}>
         <img src={item.image} alt="" loading="lazy" width="640" height="360" />
         <div>
           <p className={styles.eyebrow}>{item.type}</p>

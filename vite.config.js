@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     base: './',
+    publicDir: false,
     esbuild: { jsx: 'automatic' },
     plugins: [{ name: 'creator-inquiries', configureServer: configure, configurePreviewServer: configure }],
   }
