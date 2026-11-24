@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { estimate, formatEstimate, routes } from './estimate'
+import { availableExtras, estimate, formatEstimate, routes } from './estimate'
 import { Icon } from './Icons'
 import styles from './Configurator.module.css'
 
@@ -14,13 +14,8 @@ export function Configurator({ selectedRoute, selectedProject, requestId, onBrie
   const wantsFocus = useRef(false)
   const route = routes.find(item => item.id === routeId)
   const result = estimate(route, projectId, extras)
-  const availableExtras = route.extras.filter(item => {
-    if (result.project?.id === 'help' && item.id === 'help') return false
-    return !['payment', 'delivery'].includes(item.id) || projectId === 'shop'
-  })
-  const chosenExtras = result.options.filter(item => availableExtras.includes(item))
-  const finalResult = estimate(route, projectId, chosenExtras.map(item => item.id))
-  const projectTotal = formatEstimate(finalResult.total)
+  const options = availableExtras(route, projectId)
+  const projectTotal = formatEstimate(result.total)
   const heading = ['Что нужно сделать?', route.projectLabel, 'Что ещё понадобится?', 'Предварительная оценка'][step]
 
   useEffect(() => {
@@ -54,13 +49,23 @@ export function Configurator({ selectedRoute, selectedProject, requestId, onBrie
     setExtras(current => current.includes(id) ? current.filter(item => item !== id) : [...current, id])
   }
 
+  function chooseProject(id) {
+    const allowed = availableExtras(route, id)
+    setProjectId(id)
+    setExtras(current => current.filter(extra => allowed.some(item => item.id === extra)))
+  }
+
+  function describeOption(item) {
+    return `${item.name} — ${item.price ? formatEstimate(item.price) : 'оценивается отдельно'}`
+  }
+
   function sendBrief() {
     const content = [
       route.name,
-      finalResult.project?.name,
-      ...chosenExtras.map(item => item.name),
+      describeOption(result.project),
+      ...result.options.map(describeOption),
       `Ориентир: ${projectTotal}`,
-      finalResult.total && finalResult.review ? 'Часть работ нужно оценить отдельно.' : '',
+      result.total && result.separate.length ? 'Работы без цены в диапазон не входят.' : '',
     ].filter(Boolean).join('\n')
     onBrief(content)
   }
@@ -76,16 +81,16 @@ export function Configurator({ selectedRoute, selectedProject, requestId, onBrie
         {routes.map(item => <Choice key={item.id} name="goal" item={item} checked={routeId === item.id} onChange={() => chooseRoute(item.id)} />)}
       </div>}
       {step === 1 && <div className={styles.options} role="group" aria-label={heading}>
-        {route.projects.map(item => <Choice key={item.id} name="project" item={item} checked={projectId === item.id} onChange={() => setProjectId(item.id)} />)}
+        {route.projects.map(item => <Choice key={item.id} name="project" item={item} checked={projectId === item.id} onChange={() => chooseProject(item.id)} />)}
       </div>}
       {step === 2 && <div className={styles.options} role="group" aria-label={heading}>
-        {availableExtras.map(item => <Choice key={item.id} type="checkbox" name="addons" item={item} checked={extras.includes(item.id)} onChange={() => updateExtra(item.id)} />)}
+        {options.map(item => <Choice key={item.id} type="checkbox" name="addons" item={item} checked={extras.includes(item.id)} onChange={() => updateExtra(item.id)} />)}
       </div>}
       {step === 3 && <div className={styles.result}>
         <p className={styles.total}>{projectTotal}</p>
-        <ul><li>{finalResult.project?.name}</li>{chosenExtras.map(item => <li key={item.id}>{item.name}</li>)}</ul>
-        {finalResult.total && finalResult.review && <p>Диапазон учитывает работы с известной ценой. Подключения и работы без цены оценим отдельно.</p>}
-        {finalResult.recurring && <p>Домен, хостинг и поддержка рассчитываются отдельно. Они могут потребовать регулярной оплаты.</p>}
+        <ul><li>{describeOption(result.project)}</li>{result.options.map(item => <li key={item.id}>{describeOption(item)}</li>)}</ul>
+        {result.total && result.separate.length > 0 && <p>В диапазон входят только позиции, для которых указана цена.</p>}
+        {result.recurring && <p>Хостинг и обслуживание могут потребовать регулярной оплаты.</p>}
         <p>Окончательная стоимость и сроки зависят от согласованного объёма работ.</p>
       </div>}
       <div className={styles.actions}>

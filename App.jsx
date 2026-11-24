@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { Configurator } from './Configurator'
 import { Contact } from './Contact'
+import { Portfolio } from './Portfolio'
 import { estimate, formatEstimate, formatFrom, routes } from './estimate'
 import { Icon } from './Icons'
 import mark from './mark.svg'
-import gestia from './gestia.svg'
-import shop from './shop.svg'
 import styles from './App.module.css'
 
 const nav = [['solutions', 'Решения'], ['services', 'Услуги'], ['work', 'Работы']]
@@ -18,10 +17,6 @@ const services = [
   ['refresh', 'Обновление сайта', 'Редизайн, мобильная версия, улучшение скорости и перенос контента.', 'redesign'],
   ['flow', 'Интеграции', 'CRM, Wildberries, Ozon, системы учёта, чат-боты, помощники и API.', 'automation'],
   ['window', 'Веб-приложения', 'Личные кабинеты, базы данных, мини-CRM и внутренние инструменты.', 'automation'],
-]
-const works = [
-  { name: 'Гестия', type: 'Лендинг услуг', image: gestia, details: 'Выбор клининговой услуги, предварительный расчёт и демонстрационная форма заявки.', link: 'https://github.com/GrigValera/gestia-cleaning', demo: 'https://grigvalera.github.io/gestia-cleaning/' },
-  { name: 'MyMyShop', type: 'Интернет-магазин', image: shop, details: 'Каталог, карточки товаров, корзина и демонстрационный сценарий оформления.', link: 'https://github.com/GrigValera/MyMyShop', demo: 'https://grigvalera.github.io/MyMyShop/' },
 ]
 const faq = [
   ['Можно обновить существующий сайт?', 'Да. Начнём с текущего сайта и перечня проблем. Затем предложим объём изменений, порядок работ и оценку.'],
@@ -109,15 +104,7 @@ export function App() {
         </div>
       </section>
 
-      <section id="work" className={`${styles.bound} ${styles.section}`}>
-        <div className={styles.sectionHead}><div><p className={styles.eyebrow}>Портфолио</p><h2>Примеры работ</h2></div></div>
-        <div className={styles.two}>
-          {works.map(item => <article className={styles.work} key={item.name}>
-            <img src={item.image} alt="" loading="lazy" width="640" height="360" />
-            <div><p className={styles.eyebrow}>{item.type}</p><h3>{item.name}</h3><p>{item.details}</p><div className={styles.workLinks}>{item.demo && <a href={item.demo}>Открыть демо<span className={styles.sr}> — {item.name}</span></a>}<a href={item.link}>Проект на GitHub<span className={styles.sr}> — {item.name}</span></a></div></div>
-          </article>)}
-        </div>
-      </section>
+      <Portfolio />
 
       <section className={`${styles.bound} ${styles.section} ${styles.faq}`}>
         <h2>Частые вопросы</h2>
