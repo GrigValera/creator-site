@@ -24,15 +24,18 @@ jobs:
         run: |
           mkdir -p dist/assets .ssr/demos
           touch dist/assets/stale-build.js .ssr/demos/stale-build.js
-          npm run package:alwaysdata
+          npm run build
           test ! -e dist/assets/stale-build.js
           test ! -e .ssr/demos/stale-build.js
+          touch dist/assets/stale-after-build.js
+          node scripts/package-alwaysdata.mjs
           release_dir=$(find release -mindepth 1 -maxdepth 1 -name 'alwaysdata-*' -type d)
           test -s "$release_dir/dist/index.html"
           test -s "$release_dir/server/start.mjs"
           test -s "$release_dir/api/inquiries.js"
           test ! -e "$release_dir/.ssr"
           test ! -e "$release_dir/node_modules"
+          test ! -e "$release_dir/dist/assets/stale-after-build.js"
           HOST=127.0.0.1 PORT=4173 node "$release_dir/server/start.mjs" &
           site_pid=$!
           trap 'kill "$site_pid"' EXIT

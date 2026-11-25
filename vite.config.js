@@ -1,7 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import { createInquiryHandler } from './server/inquiries.mjs'
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, isSsrBuild }) => {
   const env = loadEnv(mode, process.cwd(), 'CREATOR_')
   const configure = server => {
     server.middlewares.use('/api/inquiries', createInquiryHandler({
@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
   return {
     base: './',
     publicDir: false,
+    build: { manifest: !isSsrBuild },
     esbuild: { jsx: 'automatic' },
     plugins: [{ name: 'creator-inquiries', configureServer: configure, configurePreviewServer: configure }],
   }
