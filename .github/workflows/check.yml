@@ -1,0 +1,40 @@
+name: Check CREATOR
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Build and verify the alwaysdata package
+        run: |
+          mkdir -p dist/assets .ssr/demos
+          touch dist/assets/stale-build.js .ssr/demos/stale-build.js
+          npm run package:alwaysdata
+          test ! -e dist/assets/stale-build.js
+          test ! -e .ssr/demos/stale-build.js
+          release_dir=$(find release -mindepth 1 -maxdepth 1 -name 'alwaysdata-*' -type d)
+          test -s "$release_dir/dist/index.html"
+          test -s "$release_dir/server/start.mjs"
+          test -s "$release_dir/api/inquiries.js"
+          test ! -e "$release_dir/.ssr"
+          test ! -e "$release_dir/node_modules"
+          HOST=127.0.0.1 PORT=4173 node "$release_dir/server/start.mjs" &
+          site_pid=$!
+          trap 'kill "$site_pid"' EXIT
+          curl --retry 5 --retry-connrefused --retry-delay 1 -fsS http://127.0.0.1:4173/ -o /tmp/creator-index.html
+          grep -q 'Сайты и веб-приложения' /tmp/creator-index.html
+          test "$(curl -sS -o /dev/null -w '%{http_code}' http://127.0.0.1:4173/api/inquiries)" = 405
