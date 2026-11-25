@@ -1,4 +1,4 @@
-import { formatEstimate } from './estimate'
+import { formatEstimate } from './estimate.ts'
 
 export const stepLabels = {
   goal: 'Цель', site: 'Сайт', project: 'Состав', extras: 'Опции', scope: 'Задача', result: 'Оценка',
@@ -30,8 +30,8 @@ export function findInvalidSiteField(site) {
 }
 
 export function describeOption(item) {
-    return `${item.name} — ${item.price ? formatEstimate(item.price) : 'оценивается отдельно'}`
-  }
+  return `${item.name} — ${item.price ? formatEstimate(item.price) : 'оценивается отдельно'}`
+}
 
 export function createBrief({ route, result, site, scope, needsScope, projectTotal }) {
   const isRedesign = route.id === 'redesign'

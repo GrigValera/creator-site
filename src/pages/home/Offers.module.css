@@ -4,8 +4,13 @@
 .card { transition: border-color .2s, box-shadow .2s; }
 .card:hover, .card:focus-within { border-color: #a7b1ed; box-shadow: 0 .65rem 1.8rem #27387913; }
 .card h3 { font-size: clamp(1.35rem, 2.1vw, 1.75rem); line-height: 1.15; letter-spacing: -.04em; }
-.cardType { color: #3c49ab; font-weight: 750; font-size: .875rem; letter-spacing: .08em; text-transform: uppercase; }
-.cardType { letter-spacing: .035em; font-size: .875rem; }
+.cardType {
+  color: #3c49ab;
+  font-weight: 750;
+  font-size: .875rem;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
 .icon { display: grid; place-items: center; width: 3rem; height: 3rem; margin-bottom: .25rem; border-radius: .65rem; background: #e9edff; color: #3b49b0; }
 .card[data-solution='shop'] .icon { background: #e0f1eb; color: #216047; }
 .card[data-solution='services'] .icon { background: #f5e9de; color: #8a4c2b; }
