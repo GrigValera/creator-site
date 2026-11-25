@@ -1,0 +1,17 @@
+.heroBand { background: var(--dark); color: var(--white); overflow: hidden; }
+.hero { padding-block: clamp(3.5rem, 8vw, 7.5rem); }
+.hero h1 { max-width: 19ch; font-size: clamp(2.55rem, 5.8vw, 5.1rem); font-weight: 770; letter-spacing: -.07em; line-height: .99; }
+.hero h1 em { color: #bfcbff; font-style: normal; }
+.intro { margin-top: 1.4rem; max-width: 36rem; color: #e0e3f4; font-size: clamp(1rem, 1.65vw, 1.2rem); line-height: 1.65; }
+.buttons { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.9rem; }
+.heroEstimate { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: .35rem; color: #dbe1ff; text-underline-offset: .24em; }
+
+@media (max-width: 47rem) {
+  .hero { padding-block: 3rem 2.5rem; }
+  .hero h1 { max-width: 13ch; font-size: clamp(2.4rem, 9vw, 4.4rem); }
+}
+
+@media (max-width: 25rem) {
+  .buttons > a { width: 100%; }
+  .hero h1 { font-size: clamp(2rem, 10vw, 2.7rem); }
+}

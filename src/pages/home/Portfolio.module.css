@@ -1,0 +1,11 @@
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.15rem; }
+.work { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: var(--white); }
+.work img { width: 100%; height: auto; aspect-ratio: 16 / 8; object-fit: cover; background: #e7ebf7; }
+.work > div:not([class]) { padding: clamp(1rem, 2.5vw, 1.6rem); display: grid; gap: .45rem; }
+.workLinks { display: flex; flex-wrap: wrap; gap: .25rem 1.1rem; }
+.work h3 { font-size: clamp(1.35rem, 2.1vw, 1.75rem); line-height: 1.15; letter-spacing: -.04em; }
+.description { color: var(--muted); line-height: 1.6; }
+
+@media (max-width: 47rem) {
+  .two { grid-template-columns: minmax(0, 1fr); }
+}

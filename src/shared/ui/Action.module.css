@@ -1,0 +1,7 @@
+.action { border: 1px solid transparent; border-radius: .6rem; display: inline-flex; align-items: center; justify-content: center; min-height: 3rem; padding: .72rem 1rem; text-decoration: none; font-weight: 720; line-height: 1.2; transition: background .2s, border-color .2s, color .2s; }
+.primary { background: #dbe1ff; color: #1a235e; }
+.primary:hover { background: #fff; }
+.secondary { border-color: #727ca5; color: #fff; }
+.secondary:hover { background: #292f55; border-color: #aeb8e8; }
+.outline { border-color: #bcc4e5; color: #3540a9; }
+.outline:hover { background: #e6e9fb; }

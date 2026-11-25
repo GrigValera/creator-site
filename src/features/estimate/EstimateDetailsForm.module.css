@@ -1,0 +1,5 @@
+.siteForm { display: grid; gap: .85rem; margin-top: 19px; }
+.siteForm label { display: block; margin-bottom: .3rem; font-weight: 650; }
+.siteForm input, .siteForm textarea { width: 100%; min-height: 2.75rem; padding: .6rem .7rem; color: var(--ink); border: 1px solid #aeb8d1; border-radius: .5rem; }
+.siteForm textarea { display: block; resize: vertical; }
+.siteError { margin-top: .35rem; color: #9b2846; }

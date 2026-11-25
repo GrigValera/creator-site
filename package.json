@@ -9,6 +9,7 @@
     "build": "vite build --configLoader native --emptyOutDir && vite build --configLoader native --ssr src/entry-server.jsx --outDir .ssr --emptyOutDir && node scripts/prerender.mjs",
     "preview": "vite preview --configLoader native",
     "check": "tsc --noEmit",
+    "test": "node --test",
     "prepackage:alwaysdata": "npm run build",
     "package:alwaysdata": "node scripts/package-alwaysdata.mjs"
   },
