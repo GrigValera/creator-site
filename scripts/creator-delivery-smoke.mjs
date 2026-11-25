@@ -6,6 +6,19 @@ if (process.env.VERCEL_ENV !== 'preview' || process.env.VERCEL_GIT_COMMIT_REF !=
   process.exit(0)
 }
 
+const names = {
+  CREATOR_TELEGRAM_BOT_TOKEN: /^\d+:[\w-]+$/,
+  CREATOR_TELEGRAM_CHAT_ID: /^-?\d+$/,
+  CREATOR_RESEND_API_KEY: /^re_[\w-]+$/,
+  CREATOR_EMAIL_FROM: /@/,
+  CREATOR_EMAIL_TO: /@/,
+}
+const checks = Object.entries(names).map(([name, pattern]) => {
+  const config = process.env[name]
+  return [name, !config ? 'missing' : pattern.test(config) ? 'present' : pattern.test(config.trim()) ? 'extra whitespace' : 'invalid format']
+})
+for (const [name, state] of checks) console.log('CREATOR delivery config: ' + name + '=' + state)
+
 const server = createServer(handleInquiry)
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve))
 const endpoint = 'http://127.0.0.1:' + server.address().port + '/api/inquiries'
