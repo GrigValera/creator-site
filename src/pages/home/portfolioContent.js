@@ -1,5 +1,5 @@
-import gestia from '../../assets/gestia-screen.png'
-import shop from '../../assets/shop-screen.png'
+import gestia from '../../assets/gestia-screen.jpg'
+import shop from '../../assets/shop-screen.jpg'
 
 export const landingExample = {
   id: 'gestia',

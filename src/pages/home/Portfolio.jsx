@@ -11,7 +11,7 @@ export function Portfolio() {
     <div className={styles.two}>
       {works.map(item => <article id={`work-${item.id}`} className={styles.work} key={item.id}>
         <div className={styles.screen}>
-          <img src={item.image} alt={`Экран проекта ${item.name}`} loading="lazy" width={item.id === 'gestia' ? '1280' : '1200'} height={item.id === 'gestia' ? '720' : '600'} />
+          <img src={item.image} alt={`Экран проекта ${item.name}`} loading="lazy" width={item.id === 'gestia' ? '1265' : '1200'} height={item.id === 'gestia' ? '720' : '600'} />
           <span>Живое демо <span aria-hidden="true">↗</span></span>
         </div>
         <div>

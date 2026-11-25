@@ -1,5 +1,5 @@
 import { Action } from '../../shared/ui/Action'
-import gestiaScreen from '../../assets/gestia-screen.png'
+import gestiaScreen from '../../assets/gestia-screen.jpg'
 import layout from '../../shared/layout/Section.module.css'
 import styles from './Hero.module.css'
 
@@ -18,7 +18,7 @@ export function Hero() {
       </div>
       <a className={styles.showcase} href="#work-gestia" aria-label="Смотреть пример лендинга Гестия в портфолио">
         <span className={styles.showcaseTop}><span><i aria-hidden="true" /> <i aria-hidden="true" /> <i aria-hidden="true" /></span><span>CREATOR / В РАБОТЕ</span></span>
-        <img src={gestiaScreen} alt="Первый экран демонстрационного лендинга Гестия" width="1280" height="720" fetchPriority="high" />
+        <img src={gestiaScreen} alt="Первый экран демонстрационного лендинга Гестия" width="1265" height="720" fetchPriority="high" />
         <span className={styles.showcaseBottom}><strong>Гестия</strong><span>Лендинг услуг <b aria-hidden="true">↗</b></span></span>
       </a>
     </section>
