@@ -6,9 +6,11 @@
   "scripts": {
     "start": "node server/start.mjs",
     "dev": "vite --configLoader native",
-    "build": "vite build --configLoader native && vite build --configLoader native --ssr src/entry-server.jsx --outDir .ssr && node scripts/prerender.mjs",
+    "build": "vite build --configLoader native --emptyOutDir && vite build --configLoader native --ssr src/entry-server.jsx --outDir .ssr --emptyOutDir && node scripts/prerender.mjs",
     "preview": "vite preview --configLoader native",
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "prepackage:alwaysdata": "npm run build",
+    "package:alwaysdata": "node scripts/package-alwaysdata.mjs"
   },
   "dependencies": {
     "react": "19.2.8",
