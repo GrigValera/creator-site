@@ -10,6 +10,7 @@ test('adds priced options and excludes options for a different project', () => {
   const result = estimate(route, 'landing', ['payment', 'analytics', 'hosting'])
 
   assert.deepEqual(result.total, [71, 120])
+  assert.equal(formatEstimate(result.total).replaceAll(/\s/g, ' '), 'от 71 000 ₽')
   assert.deepEqual(result.options.map(item => item.id), ['analytics', 'hosting'])
   assert.equal(result.recurring, true)
   assert.deepEqual(result.separate.map(item => item.id), ['hosting'])
@@ -27,6 +28,7 @@ test('validates redesign fields and transfers them into the inquiry brief', () =
   assert.match(brief.content, /Адрес сайта: example\.test/)
   assert.ok(brief.content.includes(existingSite.outcome))
   assert.equal(brief.project, 'Обновить дизайн')
+  assert.match(brief.content, /Ориентир: от 45\s000\s₽/)
 })
 
 test('keeps individually priced automation and includes only filled scope fields', () => {

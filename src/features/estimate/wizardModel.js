@@ -47,7 +47,8 @@ export function createBrief({ route, result, site, scope, needsScope, projectTot
     ...(needsScope ? scopeFields.flatMap(({ name, label }) => scope[name]?.trim()
       ? [`${label} ${scope[name].trim()}`] : []) : []),
     `Ориентир: ${projectTotal}`,
-    result.total && result.separate.length ? 'Работы без цены в диапазон не входят.' : '',
+    result.total ? 'Цена справочная. Стоимость уточняется после обсуждения задачи.' : '',
+    result.total && result.separate.length ? 'Позиции без указанной цены оцениваются отдельно.' : '',
   ].filter(Boolean).join('\n')
   return { content, project: result.project.name, range: projectTotal }
 }
