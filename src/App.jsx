@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { Configurator } from './Configurator'
-import { Contact } from './Contact'
-import { landingExample, Portfolio } from './Portfolio'
-import { estimate, formatEstimate, formatFrom, routes } from './estimate'
-import { faq, services, solutions } from './siteContent'
-import { Icon } from './Icons'
-import mark from './mark.svg'
+import { Configurator } from './components/Configurator'
+import { Contact } from './components/Contact'
+import { landingExample, Portfolio } from './components/Portfolio'
+import { estimate, formatEstimate, formatFrom, routes } from './domain/estimate'
+import { faq, services, solutions } from './content/siteContent'
+import { Icon } from './components/Icons'
+import mark from './assets/mark.svg'
 import styles from './App.module.css'
 
 const navigation = [

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import styles from './App.module.css'
+import styles from '../App.module.css'
 
 function downloadBrief(content) {
   const url = URL.createObjectURL(new Blob([content], { type: 'text/plain;charset=utf-8' }))

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/start.mjs",
     "dev": "vite --configLoader native",
-    "build": "vite build --configLoader native && vite build --configLoader native --ssr entry-server.jsx --outDir .ssr && node prerender.mjs",
+    "build": "vite build --configLoader native && vite build --configLoader native --ssr src/entry-server.jsx --outDir .ssr && node scripts/prerender.mjs",
     "preview": "vite preview --configLoader native",
     "check": "tsc --noEmit"
   },

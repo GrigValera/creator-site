@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
-import { availableExtras, estimate, formatEstimate, routes } from './estimate'
+import { availableExtras, estimate, formatEstimate, routes } from '../domain/estimate'
 import { Icon } from './Icons'
 import styles from './Configurator.module.css'
 

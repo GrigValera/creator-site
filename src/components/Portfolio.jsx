@@ -1,6 +1,6 @@
-import gestia from './gestia.svg'
-import shop from './shop.svg'
-import styles from './App.module.css'
+import gestia from '../assets/gestia.svg'
+import shop from '../assets/shop.svg'
+import styles from '../App.module.css'
 
 export const landingExample = {
   id: 'gestia',
