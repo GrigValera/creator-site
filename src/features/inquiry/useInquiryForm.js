@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
-import { downloadBrief } from './downloadBrief'
 import { requestInquiry } from './inquiryClient'
-import { formatBrief, validateInquiry } from './inquiryModel'
+import { validateInquiry } from './inquiryModel'
 
 export function useInquiryForm(brief) {
   const [status, setStatus] = useState({ text: '', error: false })
@@ -46,12 +45,12 @@ export function useInquiryForm(brief) {
         attempt.id = result.deliveryId
         attempt.receipt = result.deliveryReceipt
       }
-      if (!responseOk || !result?.ok) throw new Error(result?.error || 'Онлайн-отправка недоступна. Скачайте бриф.')
+      if (!responseOk || !result?.ok) throw new Error(result?.error || 'Не удалось отправить заявку. Повторите попытку.')
       attempt.completed = result.mode !== 'demo'
       setStatus({ text: result.mode === 'demo' ? 'Тестовая заявка принята. Внешняя доставка не настроена.' : 'Заявка отправлена.', error: false })
     } catch (error) {
       const message = error.name === 'TimeoutError' || error instanceof TypeError
-        ? 'Не удалось связаться с сервером. Повторите попытку или скачайте бриф.'
+        ? 'Не удалось связаться с сервером. Повторите попытку.'
         : error.message
       setStatus({ text: message, error: true })
     } finally {
@@ -60,19 +59,9 @@ export function useInquiryForm(brief) {
     }
   }
 
-  function prepare(event) {
-    const { contact, task } = getSubmission(event.currentTarget.form)
-    if (!task && !brief) {
-      setStatus({ text: 'Добавьте описание задачи.', error: true })
-      return
-    }
-    downloadBrief(formatBrief({ contact, task, brief }))
-    setStatus({ text: 'Бриф подготовлен. Проверьте загрузки браузера.', error: false })
-  }
-
   function clearFieldError(event) {
     if (fieldError?.name === event.currentTarget.name) setFieldError(null)
   }
 
-  return { status, pending, fieldError, send, prepare, clearFieldError }
+  return { status, pending, fieldError, send, clearFieldError }
 }

@@ -34,7 +34,7 @@ export function HomePage() {
       <Faq />
       <SplitSection id="contact" label="Обратная связь" title="Обсудим задачу"
         description="Опишите задачу своими словами. Мы уточним детали и предложим, с чего начать. Если вы собрали расчёт, он приложится к заявке.">
-        <InquiryForm brief={brief} />
+        <InquiryForm brief={brief} onRemoveBrief={() => setBrief(null)} />
       </SplitSection>
     </main>
     <SiteFooter />

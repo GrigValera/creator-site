@@ -9,8 +9,7 @@
 .formStatus:empty { display: none; }
 .formError { color: #9b2846; }
 .form [aria-invalid='true'] { border-color: #9b2846; }
-.formActions { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem .9rem; }
-.download { min-height: 2.75rem; padding: .4rem; border: 0; border-radius: .4rem; background: transparent; color: #3743ae; text-decoration: underline; text-underline-offset: .2em; font-weight: 700; }
+.remove { min-height: 2.75rem; padding: 0; border: 0; background: transparent; color: #3743ae; text-decoration: underline; text-underline-offset: .2em; }
 .attached { border: 1px solid #c5cdeb; background: #ecf0ff; border-radius: .5rem; padding: .65rem .75rem; }
 .attached summary { font-weight: 700; }
 .attached p { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: .5rem; line-height: 1.45; }
