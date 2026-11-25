@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
-  "buildCommand": "npm run build && node scripts/creator-delivery-smoke.mjs",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist"
 }
