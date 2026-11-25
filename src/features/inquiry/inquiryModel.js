@@ -5,4 +5,3 @@ export function validateInquiry(submission) {
       ? { name: 'task', text: 'Коротко опишите, что нужно сделать.' }
       : null
 }
-

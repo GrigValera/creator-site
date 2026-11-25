@@ -14,7 +14,7 @@ export function EstimateWizard({ onBrief, ...selection }) {
   const isDetails = step === 'site' || step === 'scope'
   const nextStep = steps[stepIndex + 1]
 
-  return <div className={styles.config}>
+  return <div ref={wizard.panel} className={styles.config}>
     <ol className={styles.progress} aria-label="Шаги расчёта">
       {steps.map(id => <li key={id} aria-current={id === step ? 'step' : undefined}>{stepLabels[id]}</li>)}
     </ol>

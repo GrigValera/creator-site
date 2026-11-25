@@ -16,7 +16,9 @@ export function Portfolio() {
           <h3>{item.name}</h3>
           <p className={styles.description}>{item.details}</p>
           <div className={styles.workLinks}>
-            {item.preview && <a className={layout.actionLink} href={item.preview.url}>{item.preview.label}<span className={layout.visuallyHidden}> — {item.name}</span></a>}
+            {item.preview && <a className={layout.actionLink} href={item.preview.url} target="_blank" rel="noopener">
+              {item.preview.label}<span className={layout.visuallyHidden}> — {item.name}, в новой вкладке</span>
+            </a>}
             {item.repository && <a className={layout.actionLink} href={item.repository}>Проект на GitHub<span className={layout.visuallyHidden}> — {item.name}</span></a>}
           </div>
         </div>
