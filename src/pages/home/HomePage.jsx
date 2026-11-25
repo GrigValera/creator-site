@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { EstimateWizard } from '../../features/estimate/EstimateWizard'
-import { Contact } from '../../components/Contact'
+import { InquiryForm } from '../../features/inquiry/InquiryForm'
 import { SplitSection } from '../../shared/layout/Section'
 import { Faq } from './Faq'
 import { Hero } from './Hero'
@@ -32,7 +32,7 @@ export function HomePage() {
       <Faq />
       <SplitSection id="contact" label="Обратная связь" title="Обсудим задачу"
         description="Расскажите, что нужно сделать. Если уже собрали расчёт, он появится в форме.">
-        <Contact brief={brief} />
+        <InquiryForm brief={brief} />
       </SplitSection>
     </main>
     <SiteFooter />
