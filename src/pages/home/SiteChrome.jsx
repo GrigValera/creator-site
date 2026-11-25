@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import mark from '../../assets/mark.svg'
 import { Action } from '../../shared/ui/Action'
 import { Icon } from '../../shared/ui/Icon'
 import layout from '../../shared/layout/Section.module.css'
@@ -9,9 +8,13 @@ const navigation = [
   ['tasks', 'Решения'], ['services', 'Услуги'], ['work', 'Работы'], ['contact', 'Контакты'],
 ]
 
-function Brand() {
-  return <a href="#top" className={styles.brand} aria-label="CREATOR, на главную">
-    <img src={mark} alt="" width="32" height="32" /><span>CREATOR</span>
+function Brand({ animated = false }) {
+  return <a href="#top" className={`${styles.brand} ${animated ? styles.brandAnimated : ''}`} aria-label="CREATOR, на главную">
+    <svg className={styles.brandMark} viewBox="0 0 40 40" width="36" height="36" aria-hidden="true" focusable="false">
+      <rect width="40" height="40" rx="10" fill="#ff693d" />
+      <path className={styles.bolt} d="M23.5 6.8 10 21.8h8.2l-1.7 11.4L30 18.2h-8.2z" fill="#202025" />
+      <path className={styles.spark} d="M7 9.5 5 7.5M33 9.5l2-2M32 32l2 2M8 31l-2 2" fill="none" stroke="#ffb28c" strokeWidth="2" strokeLinecap="round" />
+    </svg><span>CREATOR</span>
   </a>
 }
 
@@ -20,7 +23,7 @@ export function SiteHeader() {
   const menuButton = useRef(null)
   return <header className={styles.header}>
     <div className={layout.bound + ' ' + styles.bar}>
-      <Brand />
+      <Brand animated />
       <button ref={menuButton} type="button" aria-expanded={open} aria-controls="main-nav" className={styles.menu}
         onClick={() => setOpen(current => !current)} aria-label={open ? 'Закрыть меню' : 'Открыть меню'}>
         <Icon name="menu" size={24} />

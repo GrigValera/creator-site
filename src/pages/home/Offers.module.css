@@ -1,8 +1,11 @@
 .card > p:not(.cardType), .serviceCard p { color: var(--muted); line-height: 1.6; }
-.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
-.card, .serviceCard { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .68rem; padding: clamp(1rem, 2.3vw, 1.65rem); border: 1px solid #d7ddeb; border-radius: .95rem; background: var(--white); }
-.card { transition: border-color .2s, box-shadow .2s; }
-.card:hover, .card:focus-within { border-color: #a7b1ed; box-shadow: 0 .65rem 1.8rem #27387913; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.15rem; }
+.card, .serviceCard { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .72rem; padding: clamp(1.15rem, 2.3vw, 1.75rem); border: 1px solid #d9dce7; border-radius: 1.15rem; background: var(--white); }
+.card { position: relative; overflow: hidden; padding-top: clamp(1.65rem, 3vw, 2.2rem); box-shadow: 0 .8rem 2rem #1a21300a; transition: border-color .24s, box-shadow .24s, transform .24s; }
+.card::before { content: ''; position: absolute; height: .32rem; inset: 0 0 auto; background: #6062c9; }
+.card[data-solution='shop']::before { background: #279474; }
+.card[data-solution='services']::before { background: #de7044; }
+.card:hover, .card:focus-within { border-color: #a7b1ed; box-shadow: 0 1.2rem 2.3rem #27387920; transform: translateY(-4px); }
 .card h3 { font-size: clamp(1.35rem, 2.1vw, 1.75rem); line-height: 1.15; letter-spacing: -.04em; }
 .cardType {
   color: #3c49ab;
@@ -19,8 +22,8 @@
 .cardEstimate { display: grid; justify-items: start; padding-top: .25rem; }
 .startingPrice { color: var(--ink); font-size: 1.16rem; font-weight: 750; }
 .estimateNote { color: var(--muted); font-size: .875rem; }
-.serviceGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
-.serviceCard { background: #edf0fa; border-color: #e1e5f2; }
+.serviceGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .9rem; }
+.serviceCard { background: #f0f0f7; border-color: #e4e4ed; }
 .serviceCard svg { color: #414db0; }
 .serviceCard h3 { font-size: 1.12rem; line-height: 1.25; }
 

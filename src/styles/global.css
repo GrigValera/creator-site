@@ -3,16 +3,16 @@
 :root {
   font-family: 'Segoe UI', Arial, sans-serif;
   color: #171b27;
-  background: #f7f8fc;
+  background: #faf9f6;
   font-synthesis: none;
   --ink: #171b27;
   --muted: #4e586c;
-  --paper: #f7f8fc;
+  --paper: #faf9f6;
   --white: #fff;
-  --line: #dce1ee;
+  --line: #dedfe7;
   --purple: #414bce;
   --accent: #bccaFF;
-  --dark: #141831;
+  --dark: #11172c;
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 5.75rem; }

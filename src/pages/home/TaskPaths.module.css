@@ -15,15 +15,16 @@
   height: 100%;
   padding: clamp(.9rem, 2.5vw, 1.45rem);
   border: 1px solid var(--line);
-  border-radius: 1rem;
+  border-radius: 1.1rem;
   background: var(--white);
   text-decoration: none;
-  transition: border-color .2s, box-shadow .2s;
+  transition: border-color .24s, box-shadow .24s, transform .24s;
 }
 
 .path:hover, .path:focus-visible {
   border-color: #a7b1ed;
   box-shadow: 0 .65rem 1.65rem #27387913;
+  transform: translateY(-3px);
 }
 
 .icon {
