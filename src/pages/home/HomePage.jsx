@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Configurator } from '../../components/Configurator'
+import { EstimateWizard } from '../../features/estimate/EstimateWizard'
 import { Contact } from '../../components/Contact'
 import { SplitSection } from '../../shared/layout/Section'
 import { Faq } from './Faq'
@@ -25,7 +25,7 @@ export function HomePage() {
       <Services onSelect={selectProject} />
       <SplitSection id="estimate" label="Конфигуратор" title="Соберите свой проект"
         description="Выберите задачу и подключения. Получите ориентир в рублях и перенесите расчёт в заявку.">
-        <Configurator selectedRoute={selection.id} selectedProject={selection.project}
+        <EstimateWizard selectedRoute={selection.id} selectedProject={selection.project}
           requestId={selection.sequence} onBrief={setBrief} />
       </SplitSection>
       <Portfolio />

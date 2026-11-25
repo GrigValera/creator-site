@@ -1,7 +1,7 @@
 import { Section, SectionIntro } from '../../shared/layout/Section'
 import layout from '../../shared/layout/Section.module.css'
 import { Icon } from '../../shared/ui/Icon'
-import { estimate, formatEstimate, formatFrom, routes } from '../../domain/estimate'
+import { estimate, formatEstimate, formatFrom, routes } from '../../features/estimate/estimate'
 import { landingExample } from './portfolioContent'
 import { solutions, services } from './offerContent'
 import styles from './Offers.module.css'

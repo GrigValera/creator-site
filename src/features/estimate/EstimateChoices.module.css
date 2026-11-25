@@ -1,0 +1,7 @@
+.options { margin-top: 19px; display: grid; gap: 8px; }
+.choice { display: flex; align-items: center; gap: 12px; min-height: 51px; padding: 10px 12px; background: #faf9fc; border: 1px solid #e8e4ef; border-radius: 11px; cursor: pointer; }
+.choice:has(input:checked) { border-color: var(--purple); background: #f5efff; }
+.choice input { margin: 0; width: 17px; height: 17px; flex: none; accent-color: var(--purple); }
+.choice strong { font-size: .96rem; font-weight: 650; }
+.choice small { display: block; color: var(--muted); margin-top: 2px; font-size: .83rem; }
+.tick { margin-left: auto; color: var(--purple); display: grid; }
