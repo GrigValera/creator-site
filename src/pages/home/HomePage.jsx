@@ -7,6 +7,7 @@ import { Hero } from './Hero'
 import { Services, Solutions } from './Offers'
 import { Portfolio } from './Portfolio'
 import { SiteHeader, SiteFooter, SkipLink } from './SiteChrome'
+import { TaskPaths } from './TaskPaths'
 
 export function HomePage() {
   const [selection, setSelection] = useState({ id: 'new', sequence: 0 })
@@ -20,7 +21,8 @@ export function HomePage() {
     <SkipLink />
     <SiteHeader />
     <main id="main" tabIndex={-1}>
-      <Hero onSelect={selectProject} />
+      <Hero />
+      <TaskPaths onSelect={selectProject} />
       <Solutions onSelect={selectProject} />
       <Services onSelect={selectProject} />
       <SplitSection id="estimate" label="Конфигуратор" title="Соберите свой проект"
@@ -31,7 +33,7 @@ export function HomePage() {
       <Portfolio />
       <Faq />
       <SplitSection id="contact" label="Обратная связь" title="Обсудим задачу"
-        description="Расскажите, что нужно сделать. Если уже собрали расчёт, он появится в форме.">
+        description="Опишите задачу своими словами. Мы уточним детали и предложим, с чего начать. Если вы собрали расчёт, он приложится к заявке.">
         <InquiryForm brief={brief} />
       </SplitSection>
     </main>

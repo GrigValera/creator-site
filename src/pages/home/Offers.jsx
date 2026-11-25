@@ -8,8 +8,8 @@ import styles from './Offers.module.css'
 
 export function Solutions({ onSelect }) {
   return <Section id="solutions" titleId="solutions-title">
-    <SectionIntro titleId="solutions-title" label="Решения" title="Что можно запустить">
-      Выберите основу проекта. Состав и подключения уточните в конфигураторе.
+    <SectionIntro titleId="solutions-title" label="Запуск с нуля" title="Готовые форматы для старта">
+      Сравните базовый состав и выберите, что нужно подключить к проекту.
     </SectionIntro>
     <div className={styles.three}>
       {solutions.map(item => <article className={styles.card} data-solution={item.id} key={item.id}>
@@ -36,8 +36,8 @@ export function Solutions({ onSelect }) {
 
 export function Services({ onSelect }) {
   return <Section id="services" titleId="services-title">
-    <SectionIntro titleId="services-title" label="Услуги" title="Развиваем и подключаем">
-      Можно заказать отдельную работу или добавить её к новому проекту.
+    <SectionIntro titleId="services-title" label="Услуги" title="Доработки, интеграции и поддержка">
+      Можно улучшить действующий сайт, связать системы или сделать отдельный инструмент для команды.
     </SectionIntro>
     <div className={styles.serviceGrid}>
       {services.map(item => <article className={styles.serviceCard} key={item.title}>

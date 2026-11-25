@@ -6,7 +6,7 @@ import layout from '../../shared/layout/Section.module.css'
 import styles from './SiteChrome.module.css'
 
 const navigation = [
-  ['solutions', 'Решения'], ['services', 'Услуги'], ['work', 'Работы'], ['contact', 'Контакты'],
+  ['tasks', 'Решения'], ['services', 'Услуги'], ['work', 'Работы'], ['contact', 'Контакты'],
 ]
 
 function Brand() {
