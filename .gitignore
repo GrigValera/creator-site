@@ -4,3 +4,12 @@ dist/
 .env*
 *.local
 assets-selection/
+
+# Local working material
+/AGENTS.md
+/PROJECT_CONTEXT.md
+/DECISIONS.md
+/PROJECT_STATE.md
+/NEXT_STEPS.md
+/CREATOR_PROJECT_REFERENCE.md
+/demo-drafts/
