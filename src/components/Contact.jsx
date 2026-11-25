@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
-import styles from '../App.module.css'
+import { Action } from '../shared/ui/Action'
+import styles from './Contact.module.css'
 
 function downloadBrief(content) {
   const url = URL.createObjectURL(new Blob([content], { type: 'text/plain;charset=utf-8' }))
@@ -113,7 +114,7 @@ export function Contact({ brief }) {
       aria-describedby={fieldError?.name === 'task' ? 'task-error' : undefined} onChange={clearFieldError} />
     {fieldError?.name === 'task' && <p id="task-error" role="alert" className={styles.formError}>{fieldError.text}</p>}
     <div className={styles.formActions}>
-      <button className={styles.primary} type="submit" disabled={pending}>Отправить заявку</button>
+      <Action className={styles.primary} type="submit" disabled={pending}>Отправить заявку</Action>
       <button className={styles.download} type="button" onClick={prepare}>Скачать бриф</button>
     </div>
     <p role="status" className={`${styles.formStatus} ${status.error ? styles.formError : ''}`}>{status.text}</p>

@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { availableExtras, estimate, formatEstimate, routes } from '../domain/estimate'
-import { Icon } from './Icons'
+import { Icon } from '../shared/ui/Icon'
 import styles from './Configurator.module.css'
 
 const stepLabels = {

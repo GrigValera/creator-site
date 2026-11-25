@@ -1,0 +1,32 @@
+.card > p:not(.cardType), .serviceCard p { color: var(--muted); line-height: 1.6; }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.card, .serviceCard { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .68rem; padding: clamp(1rem, 2.3vw, 1.65rem); border: 1px solid #d7ddeb; border-radius: .95rem; background: var(--white); }
+.card { transition: border-color .2s, box-shadow .2s; }
+.card:hover, .card:focus-within { border-color: #a7b1ed; box-shadow: 0 .65rem 1.8rem #27387913; }
+.card h3 { font-size: clamp(1.35rem, 2.1vw, 1.75rem); line-height: 1.15; letter-spacing: -.04em; }
+.cardType { color: #3c49ab; font-weight: 750; font-size: .875rem; letter-spacing: .08em; text-transform: uppercase; }
+.cardType { letter-spacing: .035em; font-size: .875rem; }
+.icon { display: grid; place-items: center; width: 3rem; height: 3rem; margin-bottom: .25rem; border-radius: .65rem; background: #e9edff; color: #3b49b0; }
+.card[data-solution='shop'] .icon { background: #e0f1eb; color: #216047; }
+.card[data-solution='services'] .icon { background: #f5e9de; color: #8a4c2b; }
+.features { align-self: stretch; display: grid; gap: .38rem; margin: .12rem 0 .45rem; padding: .72rem 0 0 1.05rem; border-top: 1px solid var(--line); color: #333c53; line-height: 1.45; }
+.cardEstimate, .serviceCard a { margin-top: auto; }
+.cardEstimate { display: grid; justify-items: start; padding-top: .25rem; }
+.startingPrice { color: var(--ink); font-size: 1.16rem; font-weight: 750; }
+.estimateNote { color: var(--muted); font-size: .875rem; }
+.serviceGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; }
+.serviceCard { background: #edf0fa; border-color: #e1e5f2; }
+.serviceCard svg { color: #414db0; }
+.serviceCard h3 { font-size: 1.12rem; line-height: 1.25; }
+
+@media (max-width: 61rem) {
+  .serviceGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 47rem) {
+  .three { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 25rem) {
+  .serviceGrid { grid-template-columns: minmax(0, 1fr); }
+}
