@@ -14,6 +14,7 @@ export function Hero() {
           <Action href="#tasks">Подобрать решение</Action>
           <Action href="#contact" variant="secondary">Обсудить задачу</Action>
         </div>
+        <p className={styles.consultation}>Первичная консультация бесплатно</p>
         <a className={styles.proofLink} href="#work">Посмотреть работающие примеры <span aria-hidden="true">↗</span></a>
       </div>
       <a className={styles.showcase} href="#work-gestia" aria-label="Смотреть пример лендинга Гестия в портфолио">

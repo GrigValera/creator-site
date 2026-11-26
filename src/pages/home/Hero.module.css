@@ -22,7 +22,8 @@
 .hero h1 em { display: inline; color: #ffb794; font-family: Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -.06em; }
 .intro { margin-top: 1.65rem; max-width: 37rem; color: #e1e5f5; font-size: clamp(1rem, 1.45vw, 1.16rem); line-height: 1.7; }
 .buttons { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.9rem; }
-.proofLink { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.65rem; color: #d5ddff; font-size: .94rem; font-weight: 700; text-underline-offset: .3em; }
+.consultation { margin-top: .9rem; color: #e1e5f5; font-size: .88rem; }
+.proofLink { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; color: #d5ddff; font-size: .94rem; font-weight: 700; text-underline-offset: .3em; }
 .proofLink span { color: #ffac86; }
 .showcase { position: relative; display: block; min-width: 0; padding: .52rem; border: 1px solid #ffffff48; border-radius: 1.45rem; background: #eef0f9; box-shadow: 0 1.8rem 5rem #0508197a, 0 0 0 .8rem #ffffff08; color: #19223b; text-decoration: none; transform: rotate(2deg); transition: transform .35s ease, box-shadow .35s ease; }
 .showcase::before { content: ''; position: absolute; z-index: -1; width: 8rem; height: 8rem; top: -3.2rem; right: -3.2rem; border: 1.2rem solid #ff7954; border-radius: 50%; opacity: .85; }

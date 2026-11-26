@@ -2,7 +2,7 @@ import { Section, SectionIntro } from '../../shared/layout/Section'
 import layout from '../../shared/layout/Section.module.css'
 import { Icon } from '../../shared/ui/Icon'
 import { formatFrom, routes } from '../../features/estimate/estimate'
-import { landingExample } from './portfolioContent'
+import { landingExample, shopExample } from './portfolioContent'
 import { solutions, services } from './offerContent'
 import styles from './Offers.module.css'
 
@@ -26,6 +26,7 @@ export function Solutions({ onSelect }) {
             Рассчитать стоимость<span className={layout.visuallyHidden}> — {item.title.toLowerCase()}</span>
           </a>
           {item.id === 'landing' && <a href={`#work-${landingExample.id}`} className={layout.actionLink}>Смотреть пример лендинга</a>}
+          {item.id === 'shop' && <a href={`#work-${shopExample.id}`} className={layout.actionLink}>Смотреть пример магазина</a>}
         </div>
       </article>)}
     </div>
@@ -40,7 +41,10 @@ export function Services({ onSelect }) {
     <div className={styles.serviceGrid}>
       {services.map(item => <article className={styles.serviceCard} key={item.title}>
         <Icon name={item.icon} size={25} /><h3>{item.title}</h3><p>{item.text}</p>
-        <a href="#estimate" className={layout.actionLink} onClick={() => onSelect(item.route, item.project)}>Оценить задачу<span className={layout.visuallyHidden}> — {item.title.toLowerCase()}</span></a>
+        <a href={item.href ?? '#estimate'} className={layout.actionLink}
+          onClick={item.route ? () => onSelect(item.route, item.project) : undefined}>
+          {item.href ? 'Обсудить задачу' : 'Оценить задачу'}<span className={layout.visuallyHidden}> — {item.title.toLowerCase()}</span>
+        </a>
       </article>)}
     </div>
   </Section>

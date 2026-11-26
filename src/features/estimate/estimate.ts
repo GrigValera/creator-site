@@ -10,7 +10,7 @@ type Route = {
 }
 
 const analytics: Option = { id: 'analytics', name: 'Расширенная аналитика', price: [12, 25] }
-const content: Option = { id: 'content', name: 'Тексты и наполнение', price: [15, 45] }
+const content: Option = { id: 'content', name: 'Дополнительные тексты и наполнение', price: [15, 45] }
 const hosting: Option = { id: 'hosting', name: 'Домен и хостинг', recurring: true }
 const maintenance: Option = { id: 'maintenance', name: 'Администрирование и поддержка', recurring: true }
 const crm: Option = { id: 'crm', name: 'Передача заявок в CRM', price: [20, 45] }

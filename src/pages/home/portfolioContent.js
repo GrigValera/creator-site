@@ -13,17 +13,16 @@ export const landingExample = {
   preview: { url: 'https://grigvalera.github.io/gestia-cleaning/', label: 'Открыть демо' },
 }
 
-export const works = [
-  landingExample,
-  {
-    id: 'mymyshop',
-    name: 'MyMyShop',
-    type: 'Интернет-магазин',
-    image: shop,
-    task: 'Показать товары и довести покупателя от каталога до корзины.',
-    scenario: 'Откройте каталог, карточку товара и корзину.',
-    note: 'Публичное оформление заказа пока недоступно.',
-    repository: 'https://github.com/GrigValera/MyMyShop',
-    preview: { url: 'https://grigvalera.github.io/MyMyShop/', label: 'Открыть витрину' },
-  },
-]
+export const shopExample = {
+  id: 'mymyshop',
+  name: 'MyMyShop',
+  type: 'Интернет-магазин',
+  image: shop,
+  task: 'Показать товары и довести покупателя от каталога до корзины.',
+  scenario: 'Откройте каталог, карточку товара и корзину.',
+  note: 'Публичное оформление заказа пока недоступно.',
+  repository: 'https://github.com/GrigValera/MyMyShop',
+  preview: { url: 'https://grigvalera.github.io/MyMyShop/', label: 'Открыть витрину' },
+}
+
+export const works = [landingExample, shopExample]
