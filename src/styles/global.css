@@ -3,19 +3,19 @@
 :root {
   font-family: 'Segoe UI', Arial, sans-serif;
   color: #171b27;
-  background: #f7f8fc;
+  background: #faf9f6;
   font-synthesis: none;
   --ink: #171b27;
   --muted: #4e586c;
-  --paper: #f7f8fc;
+  --paper: #faf9f6;
   --white: #fff;
-  --line: #dce1ee;
+  --line: #dedfe7;
   --purple: #414bce;
   --accent: #bccaFF;
-  --dark: #141831;
+  --dark: #11172c;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.75rem; }
 body { margin: 0; }
 h1, h2, h3, p { margin: 0; }
 button, input, textarea { font: inherit; }
@@ -23,8 +23,11 @@ a { color: inherit; }
 button, summary { cursor: pointer; }
 img { display: block; max-width: 100%; }
 :focus-visible { outline: 3px solid #565ff0; outline-offset: 4px; }
-[id] { scroll-margin-top: 6rem; }
 ::selection { background: #d6dbff; color: var(--ink); }
+
+@media (max-width: 47rem) {
+  html { scroll-padding-top: 4.5rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

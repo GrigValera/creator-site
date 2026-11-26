@@ -5,12 +5,3 @@ export function validateInquiry(submission) {
       ? { name: 'task', text: 'Коротко опишите, что нужно сделать.' }
       : null
 }
-
-export function formatBrief({ contact, task, brief }) {
-  return [
-    'Заявка на проект CREATOR',
-    contact && `Контакт\n${contact}`,
-    brief && `Расчёт\n${brief.content}`,
-    task && `Задача\n${task}`,
-  ].filter(Boolean).join('\n\n')
-}

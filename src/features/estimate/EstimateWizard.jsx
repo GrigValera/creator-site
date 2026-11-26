@@ -14,13 +14,14 @@ export function EstimateWizard({ onBrief, ...selection }) {
   const isDetails = step === 'site' || step === 'scope'
   const nextStep = steps[stepIndex + 1]
 
-  return <div className={styles.config}>
+  return <div ref={wizard.panel} className={styles.config}>
     <ol className={styles.progress} aria-label="Шаги расчёта">
       {steps.map(id => <li key={id} aria-current={id === step ? 'step' : undefined}>{stepLabels[id]}</li>)}
     </ol>
     <div className={styles.panel}>
       <h3 ref={wizard.title} tabIndex={-1}>{heading}</h3>
-      {step === 'extras' && <p className={styles.hint}>Можно выбрать несколько вариантов или пропустить шаг.</p>}
+      {step === 'project' && <p className={styles.hint}>Цены справочные. Уточним стоимость после обсуждения задачи.</p>}
+      {step === 'extras' && <p className={styles.hint}>Выберите нужные дополнения или пропустите шаг. Цены справочные.</p>}
       {step === 'scope' && <p className={styles.hint}>Ответьте на то, что уже известно. Это поможет оценить работы с индивидуальной стоимостью.</p>}
       {step === 'goal' && <EstimateChoices label={heading} name="goal" items={routes}
         isSelected={id => id === route.id} onSelect={wizard.chooseRoute} />}

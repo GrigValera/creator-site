@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { requestInquiry } from '../src/features/inquiry/inquiryClient.js'
-import { formatBrief, validateInquiry } from '../src/features/inquiry/inquiryModel.js'
+import { validateInquiry } from '../src/features/inquiry/inquiryModel.js'
 
 const submission = { contact: 'audit@example.test', task: 'Описание задачи', estimate: '' }
 
@@ -10,13 +10,6 @@ test('accepts either a task or an attached estimate and rejects missing contact'
   assert.equal(validateInquiry({ ...submission, task: '' }).name, 'task')
   assert.equal(validateInquiry(submission), null)
   assert.equal(validateInquiry({ ...submission, task: '', estimate: 'Расчёт лендинга' }), null)
-})
-
-test('formats a downloadable brief with all provided sections', () => {
-  const text = formatBrief({ ...submission, brief: { content: 'Расчёт лендинга' } })
-  assert.match(text, /Контакт\naudit@example\.test/)
-  assert.match(text, /Расчёт\nРасчёт лендинга/)
-  assert.match(text, /Задача\nОписание задачи/)
 })
 
 test('sends the same endpoint and preserves the delivery ID and receipt on retry', async t => {

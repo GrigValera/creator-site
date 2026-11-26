@@ -46,7 +46,7 @@ export function createInquiryHandler({ webhook, deliver, demo = false } = {}) {
     if (!webhook && !deliver) {
       return demo
         ? response(res, 200, { ok: true, mode: 'demo' })
-        : response(res, 503, { error: 'Онлайн-отправка пока недоступна. Скачайте бриф.' })
+        : response(res, 503, { error: 'Онлайн-отправка пока недоступна. Попробуйте позже.' })
     }
 
     try {
@@ -58,7 +58,7 @@ export function createInquiryHandler({ webhook, deliver, demo = false } = {}) {
           deliveryReceipt: result.receipt,
           deliveryId: result.id,
         })
-        return response(res, 502, { error: 'Почтовый сервис не подтвердил приём. Повторите отправку или скачайте бриф.' })
+        return response(res, 502, { error: 'Почтовый сервис не подтвердил приём. Повторите отправку.' })
       }
       const target = new URL(webhook)
       if (target.protocol !== 'https:') throw new Error('Expected HTTPS')
@@ -68,8 +68,8 @@ export function createInquiryHandler({ webhook, deliver, demo = false } = {}) {
       })
       if (delivery.ok) return response(res, 200, { ok: true, mode: 'delivered' })
     } catch {
-      // A failed delivery leaves the visitor's input in the form for retry or download.
+      // The form keeps the visitor's input so they can retry.
     }
-    return response(res, 502, { error: 'Заявка не доставлена. Повторите отправку или скачайте бриф.' })
+    return response(res, 502, { error: 'Заявка не доставлена. Повторите отправку.' })
   }
 }

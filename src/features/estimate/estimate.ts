@@ -81,10 +81,9 @@ export function estimate(route: Route, projectId: string, extras: readonly strin
 
 const rubles = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 })
 export function formatEstimate(total?: Range) {
-  return total ? `${rubles.format(total[0] * 1000)}–${rubles.format(total[1] * 1000)}` : 'Индивидуальная оценка'
+  return total ? `от ${rubles.format(total[0] * 1000)}` : 'Индивидуальная оценка'
 }
 
 export function formatFrom(route: Route, projectId: string) {
-  const price = estimate(route, projectId, []).total?.[0]
-  return price === undefined ? 'По задаче' : `от ${rubles.format(price * 1000)}`
+  return formatEstimate(estimate(route, projectId, []).total)
 }
